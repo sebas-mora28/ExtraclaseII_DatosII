@@ -1,5 +1,6 @@
 #include <iostream>
-#define NULL 0
+
+
 
 template<class T>
 class Nodo{
@@ -10,7 +11,7 @@ public:
 
     Nodo(int data){
         this->data = data;
-        this->next = NULL;
+        this->next = nullptr;
     }
 };
 
@@ -19,12 +20,12 @@ template<class T>
 class LinkedList{
 public:
     LinkedList(){
-        this->head = NULL;
+        this->head = nullptr;
         this->size =0;
     }
 
     bool isEmpty(){
-        if(head==NULL){
+        if(head== nullptr){
             return true;
         }else{
             return false;
@@ -32,26 +33,24 @@ public:
     }
 
     void addNodo(T data){
-        if(head== NULL){
+        if(head== nullptr){
             Nodo<T> *newNodo = new Nodo<T>(data);
             head = newNodo;
             size++;
         }else{
             Nodo<T> *current = head;
             std::cout<< "current "  << current << " head " << head << "\n";
-            while(current->next != NULL){
+            while(current->next != nullptr){
                 current = current->next;
             }
             current->next = new Nodo<T>(data);
             size++;
         }
     }
-
-
     void remove(int index){
         if(size == 1){
-            delete(head);
             std::cout << head << " data : " << head->next;
+            head = nullptr;
             size = 0;
         }else if(index == 0){
             head = head->next;
@@ -69,14 +68,31 @@ public:
     }
     void printElements(){
         Nodo<T> *current = head;
-        while(current != NULL){
+        while(current != nullptr){
             std::cout << "Direccion en memoria " << current << "\n";
             std::cout << "El valor de la lista es " << current->data << "\n";
             std::cout << "Next :" << current->next << "\n";
             current = current->next;
         }
 
+    }
 
+    int getSize(){
+        return this->size;
+    }
+
+    T getLast(){
+        Nodo<T> *current = head;
+        while(current.next != nullptr){
+            current = current->next;
+
+        }
+        return current;
+    }
+
+    void removeAll(){
+        head = nullptr;
+        size = 0;
     }
 
 
