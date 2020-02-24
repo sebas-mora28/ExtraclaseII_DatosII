@@ -3,4 +3,6 @@ project(ServerApplication)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(ServerApplication main.cpp "Server /ServerSocket.cpp")
+add_executable(ServerApplication main.cpp "Server /ServerSocket.cpp"
+        List/LinkedList.cpp)
+
