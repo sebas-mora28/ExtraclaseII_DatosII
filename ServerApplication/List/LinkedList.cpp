@@ -24,6 +24,8 @@ public:
         this->size =0;
     }
 
+    ~LinkedList()= default;
+
     bool isEmpty(){
         if(head== nullptr){
             return true;
@@ -83,7 +85,7 @@ public:
 
     T getLast(){
         Nodo<T> *current = head;
-        while(current.next != nullptr){
+        while(current->next != nullptr){
             current = current->next;
 
         }
@@ -94,11 +96,9 @@ public:
         head = nullptr;
         size = 0;
     }
-
-
 private:
     Nodo<T>* head;
-    int size;
+    int size{};
 
 };
 
