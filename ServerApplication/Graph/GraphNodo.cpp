@@ -46,6 +46,5 @@ public:
         this->visited = visited;
     }
 
-
 };
 

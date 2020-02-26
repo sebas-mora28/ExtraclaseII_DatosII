@@ -1,4 +1,3 @@
-#include <cmath>
 #include "GraphNodo.cpp"
 
 
@@ -13,13 +12,13 @@ private:
 
 public:
 
-    GraphEdge() = default;
-
     GraphEdge(GraphNodo<T>* startNode, GraphNodo<T>* endNode, int weight){
         this->statNode = startNode;
         this->endNode = endNode;
         this->weigth = weight;
     }
+
+    ~GraphEdge()= default;
 
     GraphNodo<T>* getStartNode(){
         return this->statNode;
