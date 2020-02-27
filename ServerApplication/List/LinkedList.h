@@ -1,5 +1,11 @@
-#include <iostream>
+    //
+// Created by sebasmora on 25/2/20.
+//
 
+#ifndef SERVERAPPLICATION_LINKEDLIST_H
+#define SERVERAPPLICATION_LINKEDLIST_H
+
+#include <iostream>
 
 
 template<class T>
@@ -9,7 +15,7 @@ public:
     T data;
     Nodo* next;
 
-    Nodo(int data){
+    Nodo(T data){
         this->data = data;
         this->next = nullptr;
     }
@@ -27,21 +33,17 @@ public:
     ~LinkedList()= default;
 
     bool isEmpty(){
-        if(head== nullptr){
-            return true;
-        }else{
-            return false;
-        }
+        return head == nullptr;
     }
 
     void addNodo(T data){
+        //std::cout << data << "\n";
         if(head== nullptr){
-            Nodo<T> *newNodo = new Nodo<T>(data);
-            head = newNodo;
+            head =  new Nodo<T>(data);
             size++;
         }else{
             Nodo<T> *current = head;
-            std::cout<< "current "  << current << " head " << head << "\n";
+            //std::cout<< "current "  << current << " head " << head << "\n";
             while(current->next != nullptr){
                 current = current->next;
             }
@@ -83,6 +85,19 @@ public:
         return this->size;
     }
 
+    Nodo<T>* get(int index){
+        if(index>=size){
+            return nullptr;
+        }else{
+            int current{0};
+            Nodo<T>* temp = head;
+            for(current; current < index;current++){
+                temp = temp->next;
+            }
+            return temp;
+        }
+    }
+
     T getLast(){
         Nodo<T> *current = head;
         while(current->next != nullptr){
@@ -102,5 +117,4 @@ private:
 
 };
 
-
-
+#endif //SERVERAPPLICATION_LINKEDLIST_H

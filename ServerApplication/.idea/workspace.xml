@@ -11,7 +11,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85c2f332-8b64-4a09-b652-19a1fed97e2b" name="Default Changelist" comment="" />
+    <list default="true" id="85c2f332-8b64-4a09-b652-19a1fed97e2b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graph/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graph/Graph.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graph/GraphEdge.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graph/GraphEdge.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/List/LinkedList.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/List/LinkedList.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerSocket.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +29,11 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1YFKGVKY5Dh5GiFaBza0cSJ6i0f" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -35,6 +47,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Graph" />
+      <recent name="$PROJECT_DIR$/List" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/LinkedList_Implementation" />
       <recent name="$PROJECT_DIR$/Server " />
     </key>
   </component>
@@ -56,6 +72,8 @@
       <option name="presentableId" value="Default" />
       <updated>1582532806677</updated>
       <workItem from="1582532808149" duration="2268000" />
+      <workItem from="1582589024872" duration="20476000" />
+      <workItem from="1582777731247" duration="8024000" />
     </task>
     <servers />
   </component>
@@ -67,21 +85,29 @@
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="2109" y="273" width="424" height="484" key="FileChooserDialogImpl/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1582532876621" />
-    <state width="1874" height="298" key="GridCell.Tab.0.bottom" timestamp="1582535072744">
-      <screen x="1366" y="0" width="1920" height="1080" />
+    <state width="1874" height="199" key="GridCell.Tab.0.bottom" timestamp="1582785989928">
+      <screen x="0" y="27" width="1920" height="978" />
     </state>
+    <state width="1874" height="199" key="GridCell.Tab.0.bottom/0.27.1920.978@0.27.1920.978" timestamp="1582785989928" />
     <state width="1874" height="298" key="GridCell.Tab.0.bottom/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1582535072744" />
-    <state width="1874" height="298" key="GridCell.Tab.0.center" timestamp="1582535072743">
-      <screen x="1366" y="0" width="1920" height="1080" />
+    <state width="1874" height="199" key="GridCell.Tab.0.center" timestamp="1582785989928">
+      <screen x="0" y="27" width="1920" height="978" />
     </state>
+    <state width="1874" height="199" key="GridCell.Tab.0.center/0.27.1920.978@0.27.1920.978" timestamp="1582785989928" />
     <state width="1874" height="298" key="GridCell.Tab.0.center/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1582535072743" />
-    <state width="1874" height="298" key="GridCell.Tab.0.left" timestamp="1582535072743">
-      <screen x="1366" y="0" width="1920" height="1080" />
+    <state width="1874" height="199" key="GridCell.Tab.0.left" timestamp="1582785989927">
+      <screen x="0" y="27" width="1920" height="978" />
     </state>
+    <state width="1874" height="199" key="GridCell.Tab.0.left/0.27.1920.978@0.27.1920.978" timestamp="1582785989927" />
     <state width="1874" height="298" key="GridCell.Tab.0.left/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1582535072743" />
-    <state width="1874" height="298" key="GridCell.Tab.0.right" timestamp="1582535072743">
-      <screen x="1366" y="0" width="1920" height="1080" />
+    <state width="1874" height="199" key="GridCell.Tab.0.right" timestamp="1582785989928">
+      <screen x="0" y="27" width="1920" height="978" />
     </state>
+    <state width="1874" height="199" key="GridCell.Tab.0.right/0.27.1920.978@0.27.1920.978" timestamp="1582785989928" />
     <state width="1874" height="298" key="GridCell.Tab.0.right/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1582535072743" />
+    <state x="614" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1582777744618">
+      <screen x="0" y="27" width="1920" height="978" />
+    </state>
+    <state x="614" y="342" key="com.intellij.ide.util.TipDialog/0.27.1920.978@0.27.1920.978" timestamp="1582777744618" />
   </component>
 </project>

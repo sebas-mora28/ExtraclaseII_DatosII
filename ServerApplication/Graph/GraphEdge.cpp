@@ -5,14 +5,14 @@ template<class T>
 class GraphEdge{
 
 private:
-    GraphNodo<T> *statNode;
-    GraphNodo<T> *endNode;
+    T statNode;
+    T endNode;
     double weigth;
 
 
 public:
 
-    GraphEdge(GraphNodo<T>* startNode, GraphNodo<T>* endNode, int weight){
+    GraphEdge(T startNode, T endNode, int weight){
         this->statNode = startNode;
         this->endNode = endNode;
         this->weigth = weight;
@@ -20,14 +20,14 @@ public:
 
     ~GraphEdge()= default;
 
-    GraphNodo<T>* getStartNode(){
+    T getStartNode(){
         return this->statNode;
     }
     void setStartNode(GraphNodo<T>* startNode){
         this->statNode = startNode;
     }
 
-    GraphNodo<T>* getEndNode(){
+    T getEndNode(){
         return this->endNode;
     }
 

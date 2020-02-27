@@ -1,7 +1,10 @@
-#include "Server /ServerSocket.cpp"
+#include <fstream>
+#include "Server_/ServerSocket.cpp"
+#include "Graph/Graph.cpp"
+#include "List/LinkedList.h"
 
 int main(){
 
-    ServerSocket init;
-    init.createSocket();
+
+    
 }

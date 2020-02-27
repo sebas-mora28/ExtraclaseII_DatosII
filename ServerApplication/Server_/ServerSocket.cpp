@@ -60,8 +60,7 @@ public:
 
         char buf[4096];
 
-        while (true)
-        {
+        while (true){
             memset(buf, 0, 4096);
 
 
