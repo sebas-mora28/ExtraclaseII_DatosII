@@ -1,7 +1,9 @@
 #include "mainwindow.h"
+#include "Client.cpp"
 #include "ui_mainwindow.h"
-#include "client.cpp"
 #include <QStandardItemModel>
+
+Client* client = new Client();
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,13 +11,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
 
+
     ui->setupUi(this);
 
 
-    Client* client = new Client();
+    //Client* client = new Client();
     client->createSocket();
-
-
 
 
     std::string message = "hola mundo";
@@ -26,63 +27,52 @@ MainWindow::MainWindow(QWidget *parent)
 
     QStringList bodyTxtList = bodyTxt.split("|");
 
-
     ui->amount_of_nodos->setText(bodyTxtList[0]);
-    QHeaderView* header = new QHeaderView(Qt::Orientation::Horizontal,ui->tableView);
-    ui->tableView->setHorizontalHeader(header);
+    for(int i=1; i<= bodyTxtList[0].toInt(); i++){
+        ui->StartNode_box->addItem(QString::number(i));
+        ui->EndNode_box->addItem(QString::number(i));
 
+    }
 
 
     QStandardItemModel* model = new QStandardItemModel(this);
+    ui->tableView->setModel(model);
     model->setColumnCount(2);
     model->setRowCount(bodyTxtList.length()-2);
+    model->setHorizontalHeaderItem(0,new QStandardItem("Start Nodo"));
+    model->setHorizontalHeaderItem(1,new QStandardItem("End Nodo"));
+    ui->tableView->setColumnWidth(0, 240);
+    ui->tableView->setColumnWidth(1, 223);
+
+
 
     for(int i=0; i<bodyTxtList.length()-1; i++){
         std::cout << bodyTxtList[i].toStdString() << "\n";
     }
-    ui->tableView->setModel(model);
+
 
     for(int row=1; row < bodyTxtList.length()-1; row++){
         auto current_values = bodyTxtList[row].split(",");
         for(int column=0; column < model->columnCount(); column++){
             model->setItem(row-1, column, new QStandardItem(current_values[column]));
 
-
         }
-
-
 
     }
 
-
-
-}
+   }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-
 void MainWindow::on_pushButton_clicked()
-
 {
-    ui->tableView->showRow(5);
+    QString start_node_selected = ui->StartNode_box->currentText();
+    QString end_node_selected = ui->EndNode_box->currentText();
 
-}
-
-
-
+    client->sendMessage(start_node_selected.toStdString() + "," + end_node_selected.toStdString());
 
 
-
-
-
-
-
-
-
-
-
-
-
+   }
