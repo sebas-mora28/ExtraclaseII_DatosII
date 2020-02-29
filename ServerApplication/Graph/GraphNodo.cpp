@@ -17,7 +17,6 @@ public:
         this->entity = entity;
     }
 
-
     void setInDegree(int inDegree){
         this->inDegree = inDegree;
     }

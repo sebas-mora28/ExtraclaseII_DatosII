@@ -58,13 +58,13 @@ public:
         close(listening);
 
 
-        char buf[4096];
+        char buf[128];
 
         while (true){
-            memset(buf, 0, 4096);
+            cout << "INGRESA" << "\n";
+            memset(buf, 0, 128);
 
-
-            int bytesReceived = recv(clientSocket, buf, 4096, 0);
+            int bytesReceived = recv(clientSocket, buf, 128, 0);
 
             cout << "BytesReceived " << bytesReceived << "\n";
 
@@ -79,21 +79,25 @@ public:
                 cout << "Client disconnected " << endl;
                 break;
             }
-
             cout << string(buf, 0, bytesReceived) << endl;
 
-            sendMessage(clientSocket,"Se ha enviado");
+            cout << "ANTES DE ENVIAR LA INFORMACION"<<"\n";
+            send(clientSocket, buf, bytesReceived+1, 0);
+            cout << "DESPUES DE ENVIAR LA INFORMACION" << "\n";
+
+            //sendMessage(clientSocket,"Se ha enviado");
 
         }
 
 
         close(clientSocket);
     }
-
-
-    void sendMessage(int clientSocket, char* message){
+    void sendMessage(int clientSocket, char* message) {
         cout << sizeof(message);
-        send(clientSocket, message, sizeof(message), 0);
+        int sendMessage = send(clientSocket, message, sizeof(message), 0);
+        if (sendMessage == -1) {
+            std::cout << "No se ha podido enviar el mensaje";
+        }
     }
 
 

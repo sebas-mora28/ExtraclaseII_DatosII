@@ -1,13 +1,22 @@
-    //
-// Created by sebasmora on 25/2/20.
-//
+/**
+ * Technological Institute of Costa Ric
+ * Computer Engineering
+ * Algoritmos y Estructuras de Datos II
+ * @author Sebastian Mora Godínez
+ * Description: Linked List implementation, includes Nodo class and add, remove, get methods
+ *
+ */
 
 #ifndef SERVERAPPLICATION_LINKEDLIST_H
 #define SERVERAPPLICATION_LINKEDLIST_H
-
 #include <iostream>
 
 
+
+/*
+ * Nodo class
+ * Description: Nodo class implementation, holds the data and the pointer to the next nodo
+ */
 template<class T>
 class Nodo{
 public:
@@ -22,19 +31,46 @@ public:
 };
 
 
+
+
+/*
+ * Linked List
+ * Description: This class contains all the necessary methods for linked List's implementation
+ */
 template<class T>
 class LinkedList{
 public:
+
+    /**
+     * Constructor, initialize  the head pointer and the size
+     */
     LinkedList(){
         this->head = nullptr;
-        this->size =0;
+        this->size = 0;
     }
 
-    ~LinkedList()= default;
+
+    /**
+     * Destructor
+     */
+    ~LinkedList() = default;
+
+
+    /**
+     * Verify if the linked list is empty
+     * @return true if it's empty, otherwise it's false
+     */
 
     bool isEmpty(){
         return head == nullptr;
     }
+
+
+    /**
+     * Add a new nodo to the tail of the linked list
+     * @param data
+     */
+
 
     void addNodo(T data){
         //std::cout << data << "\n";
@@ -51,6 +87,11 @@ public:
             size++;
         }
     }
+
+    /**
+     * Remove a nodo from a especific position
+     * @param index
+     */
     void remove(int index){
         if(size == 1){
             std::cout << head << " data : " << head->next;
@@ -81,9 +122,19 @@ public:
 
     }
 
+    /**
+     * Returns the value of the size
+     * @return
+     */
     int getSize(){
         return this->size;
     }
+
+    /**
+     * Returns the nodo from the especified position
+     * @param index
+     * @return nodo encoutered in the index position
+     */
 
     Nodo<T>* get(int index){
         if(index>=size){
