@@ -1,5 +1,4 @@
 
-
 template<class T>
 class GraphNodo{
 private:

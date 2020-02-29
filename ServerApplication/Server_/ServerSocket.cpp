@@ -7,19 +7,21 @@
 #include <string.h>
 #include <string>
 
-using namespace std;
-
 
 class ServerSocket{
 
+private:
+    bool bodyTxtSended{true};
+
+
+
 public:
 
-    void createSocket(){
+    void createSocket(std::string bodyTxt) {
 
         int listening = socket(AF_INET, SOCK_STREAM, 0);
-        if (listening == -1)
-        {
-            cerr << "Can't create a socket! Quitting" << endl;
+        if (listening == -1) {
+            std::cerr << "Can't create a socket! Quitting" << "\n";
         }
 
         sockaddr_in hint;
@@ -27,7 +29,7 @@ public:
         hint.sin_port = htons(54000);
         inet_pton(AF_INET, "0.0.0.0", &hint.sin_addr);
 
-        bind(listening, (sockaddr*)&hint, sizeof(hint));
+        bind(listening, (sockaddr *) &hint, sizeof(hint));
 
 
         listen(listening, SOMAXCONN);
@@ -36,7 +38,7 @@ public:
         sockaddr_in client;
         socklen_t clientSize = sizeof(client);
 
-        int clientSocket = accept(listening, (sockaddr*)&client, &clientSize);
+        int clientSocket = accept(listening, (sockaddr *) &client, &clientSize);
 
         char host[NI_MAXHOST];
         char service[NI_MAXSERV];
@@ -44,14 +46,11 @@ public:
         memset(host, 0, NI_MAXHOST);
         memset(service, 0, NI_MAXSERV);
 
-        if (getnameinfo((sockaddr*)&client, sizeof(client), host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0)
-        {
-            cout << host << " connected on port " << service << endl;
-        }
-        else
-        {
+        if (getnameinfo((sockaddr *) &client, sizeof(client), host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0) {
+            std::cout << host << " connected on port " << service << "\n";
+        } else {
             inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
-            cout << host << " connected on port " << ntohs(client.sin_port) << endl;
+            std::cout << host << " connected on port " << ntohs(client.sin_port) << "\n";
         }
 
 
@@ -60,41 +59,47 @@ public:
 
         char buf[128];
 
-        while (true){
-            cout << "INGRESA" << "\n";
+        while (true) {
+            std::cout << "INGRESA" << "\n";
             memset(buf, 0, 128);
 
             int bytesReceived = recv(clientSocket, buf, 128, 0);
 
-            cout << "BytesReceived " << bytesReceived << "\n";
+            std::cout << "BytesReceived " << bytesReceived << "\n";
 
-            if (bytesReceived == -1)
-            {
-                cerr << "Error in recv(). Quitting" << endl;
+            if (bytesReceived == -1) {
+                std::cerr << "Error in recv(). Quitting" << "\n";
                 break;
             }
 
-            if (bytesReceived == 0)
-            {
-                cout << "Client disconnected " << endl;
+            if (bytesReceived == 0) {
+                std::cout << "Client disconnected " "\n";
                 break;
             }
-            cout << string(buf, 0, bytesReceived) << endl;
+            std::cout << std::string(buf, 0, bytesReceived) << "\n";
 
-            cout << "ANTES DE ENVIAR LA INFORMACION"<<"\n";
-            send(clientSocket, buf, bytesReceived+1, 0);
-            cout << "DESPUES DE ENVIAR LA INFORMACION" << "\n";
 
-            //sendMessage(clientSocket,"Se ha enviado");
+            if(bodyTxtSended){
+                sendMessage(clientSocket, const_cast<char *>(bodyTxt.c_str()));
+                bodyTxtSended = false;
+            }else{
+                send(clientSocket, buf, bytesReceived + 1, 0);
+            }
+
+
+            sendMessage(clientSocket,"Se ha enviado");
 
         }
 
 
         close(clientSocket);
     }
-    void sendMessage(int clientSocket, char* message) {
-        cout << sizeof(message);
-        int sendMessage = send(clientSocket, message, sizeof(message), 0);
+
+
+    void sendMessage(int clientSocket, char *message) {
+        std::cout << "TAMANO DEL MENSAJE " << strlen(message) << "\n";
+        std::cout << message << "\n";
+        int sendMessage = send(clientSocket, message, strlen(message)-2, 0);
         if (sendMessage == -1) {
             std::cout << "No se ha podido enviar el mensaje";
         }
@@ -102,155 +107,3 @@ public:
 
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-class ServerSocket{
-
-private:
-    int socketServer;
-    int socketClient;
-    sockaddr_in hint;
-    sockaddr_in client;
-    int bytesReceived;
-    char messageReceived[250];
-
-
-
-    void bindSocket(){
-        hint.sin_family = AF_INET;
-        hint.sin_port = htons(54000);
-        inet_pton(AF_INET, "0.0.0.0", &hint.sin_addr);
-        bind(socketServer, (sockaddr*)&hint, sizeof(hint));
-        listen(socketServer, SOMAXCONN);
-
-        acceptConnection();
-
-    }
-
-    void acceptConnection(){
-        socklen_t clientSize = sizeof (client);
-
-        socketClient = accept(socketServer, (sockaddr*)&client, &clientSize);
-
-        connetingToPort();
-
-    }
-
-
-
-    void connetingToPort(){
-        char host[NI_MAXHOST];
-        char service[NI_MAXSERV];
-        memset(host, 0, NI_MAXHOST);
-        memset(service, 0, NI_MAXSERV);
-
-
-        if(getnameinfo((sockaddr*)&client, sizeof (client),host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0){
-            cout << host << "connected on port " << service << "\n";
-        }else{
-            inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
-            cout << host << "connected on port " <<  ntohs(client.sin_port) << "\n";
-        }
-
-        closeSocketServer();
-        receiveData();
-
-
-    }
-
-    void closeSocketServer(){
-        close(socketServer);
-    }
-
-
-    void receiveData(){
-
-        while(true){
-            memset(messageReceived, 0, 250);
-
-            bytesReceived = recv(socketClient, messageReceived, 250, 0);
-
-            if(bytesReceived == -1){
-                cerr << "Error recibiendo el mensaje";
-                break;
-            }else if(bytesReceived == 0){
-                cout << "Client Disconnected " << "\n";
-                break;
-
-            }
-
-            //cout << string(messageReceived, 0, bytesReceived) << "\n";
-
-            closeSocketClient();
-
-
-
-
-        }
-
-
-    }
-
-    void closeSocketClient() {
-        close(socketClient);
-    }
-
-public :
-    void createSocket(){
-        socketServer = socket(AF_INET, SOCK_STREAM, 0);
-        if(socketServer == -1){
-            cerr << "Ocurrio un error en el socker"<< "\n";
-        }
-
-        bindSocket();
-
-    }
-
-    void sendMessage(char messageToSend[250]){
-        cout << "Mensaje enviado " << messageToSend << "\n";
-        send(socketClient, messageToSend, bytesReceived +1, 0);
-
-
-    }
-
-
-
-};
-*/

@@ -11,8 +11,6 @@
 #define SERVERAPPLICATION_LINKEDLIST_H
 #include <iostream>
 
-
-
 /*
  * Nodo class
  * Description: Nodo class implementation, holds the data and the pointer to the next nodo

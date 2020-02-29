@@ -1,7 +1,7 @@
 #include <fstream>
 #include "Graph/GraphLoader.cpp"
 #include "Server_/ServerSocket.cpp"
-#include "List/LinkedList.h"
+
 
 int main(){
 
@@ -9,8 +9,8 @@ int main(){
     graphLoader.loadGraph();
 
 
-    ServerSocket initServer{ServerSocket()};
-    initServer.createSocket();
+    ServerSocket initServer = ServerSocket();
+    initServer.createSocket(graphLoader.getBody());
 
 
 

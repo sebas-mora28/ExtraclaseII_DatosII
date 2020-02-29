@@ -1,8 +1,10 @@
 #include <fstream>
+#include <iostream>
 #include <string.h>
+//#include "../Headers/Graph.h"
 #include "Graph.cpp"
 
-using namespace std;
+
 
 
 class GraphLoader{
@@ -16,7 +18,10 @@ public:
 
     void loadGraph(){
         loadGraphFromFile();
+    }
 
+    std::string getBody(){
+        return bodyTxt;
     }
 
 
@@ -24,10 +29,11 @@ private:
     Graph* graph;
     const int LINE_AMOUNT_OF_NODES{1};
     const int MAX_NUMBER_OF_NODES_CONNECTED_IN_A_EDGE{2};
+    std::string bodyTxt;
 
     void loadGraphFromFile(){
         char line[256];
-        ifstream fin("/home/sebasmora/Desktop/test.txt");
+        std::ifstream fin("/home/sebasmora/Desktop/test.txt");
         int counterLine(1);
         while(!fin.eof()){
             fin >> line;
@@ -41,6 +47,7 @@ private:
             }
 
         }
+        concanetateMessage();
         //graph->printEdges();
 
 
@@ -68,8 +75,16 @@ private:
             }
         }
 
-
     }
 
+    void concanetateMessage(){
+        std::ifstream archivo("/home/sebasmora/Desktop/test.txt");
+        char linea[128];
+        while(!archivo.eof()){
+            archivo.getline(linea, sizeof(linea));
+            bodyTxt += linea;
+            bodyTxt += "|";
+        }
+    }
 
 };

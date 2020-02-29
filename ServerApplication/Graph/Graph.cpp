@@ -1,4 +1,6 @@
-#include "GraphEdge.cpp"
+
+//#include "../Headers/GraphEdge.h"
+#include "../Graph/GraphEdge.cpp"
 #include "../List/LinkedList.h"
 
 
