@@ -37,18 +37,21 @@ MainWindow::MainWindow(QWidget *parent)
 
     QStandardItemModel* model = new QStandardItemModel(this);
     ui->tableView->setModel(model);
-    model->setColumnCount(2);
+    model->setColumnCount(3);
     model->setRowCount(bodyTxtList.length()-2);
     model->setHorizontalHeaderItem(0,new QStandardItem("Start Nodo"));
     model->setHorizontalHeaderItem(1,new QStandardItem("End Nodo"));
-    ui->tableView->setColumnWidth(0, 240);
-    ui->tableView->setColumnWidth(1, 223);
+    model->setHorizontalHeaderItem(2, new QStandardItem("Weight") );
+    ui->tableView->setColumnWidth(0, 160);
+    ui->tableView->setColumnWidth(1, 160);
+    ui->tableView->setColumnWidth(2, 143);
 
 
 
     for(int i=0; i<bodyTxtList.length()-1; i++){
         std::cout << bodyTxtList[i].toStdString() << "\n";
     }
+
 
 
     for(int row=1; row < bodyTxtList.length()-1; row++){
@@ -67,7 +70,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+
+
+void MainWindow::on_ShortestPath_clicked()
 {
     QString start_node_selected = ui->StartNode_box->currentText();
     QString end_node_selected = ui->EndNode_box->currentText();
@@ -75,4 +80,4 @@ void MainWindow::on_pushButton_clicked()
     client->sendMessage(start_node_selected.toStdString() + "," + end_node_selected.toStdString());
 
 
-   }
+}

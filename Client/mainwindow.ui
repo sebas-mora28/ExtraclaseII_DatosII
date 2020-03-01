@@ -27,30 +27,30 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="ShortestPath">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>88</x>
       <y>290</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Update</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>60</y>
       <width>111</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Total de nodos:</string>
+     <string>Shortest Path</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>60</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Amount of nodes</string>
     </property>
    </widget>
    <widget class="QLabel" name="amount_of_nodos">
@@ -76,7 +76,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Lista de los nodos conectados </string>
+     <string>List of nodes connected</string>
     </property>
     <property name="textFormat">
      <enum>Qt::AutoText</enum>
