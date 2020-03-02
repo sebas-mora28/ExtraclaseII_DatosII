@@ -14,6 +14,7 @@ class ServerSocket{
 private:
     bool bodyTxtSended{true};
     int clientSocket;
+    const std::string COMMAND_LOAD_GRAPH = "loadGraph";
 
 
 
@@ -78,9 +79,12 @@ public:
                 std::cout << "Client disconnected " "\n";
                 break;
             }
-            std::cout << std::string(buf, 0, bytesReceived) << "\n";
 
-            if(bodyTxtSended){
+
+            std::string messageReceive = std::string(buf, 0, bytesReceived);
+
+            if(messageReceive.compare(COMMAND_LOAD_GRAPH) == 0){
+                std::cout << "ENTRA A CARGAR EL GRAFO " << "\n";
                 sendMessage(clientSocket, const_cast<char *>(graphLoader->getBody().c_str()));
                 bodyTxtSended = false;
             }else{

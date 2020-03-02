@@ -63,13 +63,13 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="title">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>390</x>
       <y>10</y>
       <width>361</width>
       <height>20</height>
@@ -134,14 +134,17 @@
    <widget class="QLabel" name="shortest_path_value">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>420</y>
-      <width>67</width>
-      <height>17</height>
+      <x>90</x>
+      <y>410</y>
+      <width>131</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="shortest_path_title">
@@ -155,6 +158,19 @@
     </property>
     <property name="text">
      <string>Value shortest Path</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>10</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load Graph</string>
     </property>
    </widget>
   </widget>

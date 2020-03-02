@@ -4,6 +4,7 @@
 #include <QStandardItemModel>
 
 Client* client = new Client();
+QStandardItemModel* model;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -21,20 +22,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    QString bodyTxt =  client->sendMessage(std::string("loadGraph"));
-    std::cout << bodyTxt.toStdString() << "\n";
-
-    QStringList bodyTxtList = bodyTxt.split("|");
-
-    ui->amount_of_nodos->setText(bodyTxtList[0]);
-    for(int i=1; i<= bodyTxtList[0].toInt(); i++){
-        ui->StartNode_box->addItem(QString::number(i));
-        ui->EndNode_box->addItem(QString::number(i));
-
-    }
 
 
-
+    //SET THE FONT TO
     QFont font;
     font.setBold(true);
     font.setPointSize(12);
@@ -42,10 +32,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->title->setFont(font);
     ui->shortest_path_value->setFont(font);
 
-    QStandardItemModel* model = new QStandardItemModel(this);
+    model = new QStandardItemModel(this);
     ui->tableView->setModel(model);
     model->setColumnCount(3);
-    model->setRowCount(bodyTxtList.length()-2);
     model->setHorizontalHeaderItem(0,new QStandardItem("Start Nodo"));
     model->setHorizontalHeaderItem(1,new QStandardItem("End Nodo"));
     model->setHorizontalHeaderItem(2, new QStandardItem("Weight") );
@@ -55,21 +44,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-
-    for(int i=0; i<bodyTxtList.length()-1; i++){
-        std::cout << bodyTxtList[i].toStdString() << "\n";
-    }
-
-
-
-    for(int row=1; row < bodyTxtList.length()-1; row++){
-        auto current_values = bodyTxtList[row].split(",");
-        for(int column=0; column < model->columnCount(); column++){
-            model->setItem(row-1, column, new QStandardItem(current_values[column]));
-
-        }
-
-    }
 
    }
 
@@ -88,6 +62,44 @@ void MainWindow::on_ShortestPath_clicked()
     QString shortest_path_value = client->sendMessage(start_node_selected.toStdString() + "," + end_node_selected.toStdString());
 
     ui->shortest_path_value->setText(shortest_path_value);
+
+
+
+}
+
+void MainWindow::on_pushButton_clicked(){
+
+
+    QString bodyTxt =  client->sendMessage(std::string("loadGraph"));
+    std::cout << bodyTxt.toStdString() << "\n";
+
+    QStringList bodyTxtList = bodyTxt.split("|");
+    model->setRowCount(bodyTxtList.length()-2);
+
+    ui->amount_of_nodos->setText(bodyTxtList[0]);
+    for(int i=1; i<= bodyTxtList[0].toInt(); i++){
+        ui->StartNode_box->addItem(QString::number(i));
+        ui->EndNode_box->addItem(QString::number(i));
+
+    }
+
+
+    for(int i=0; i<bodyTxtList.length()-1; i++){
+        std::cout << bodyTxtList[i].toStdString() << "\n";
+    }
+
+
+
+    for(int row=1; row < bodyTxtList.length()-1; row++){
+        auto current_values = bodyTxtList[row].split(",");
+        for(int column=0; column < model->columnCount(); column++){
+            model->setItem(row-1, column, new QStandardItem(current_values[column]));
+
+        }
+
+    }
+
+
 
 
 
