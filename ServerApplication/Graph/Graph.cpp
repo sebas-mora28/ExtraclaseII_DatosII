@@ -71,7 +71,11 @@ public:
         }
     }
 
-public:
+    void shortestPath(int startNode, int endNode){
+        initShortestPath(startNode, endNode);
+    }
+
+private:
 
     void DijkstraAlgorithm(std::vector<pairs> adj[], int source, int end){
 
@@ -109,6 +113,7 @@ public:
 
 
     void initShortestPath(int startNode, int endNode){
+        std::cout << "NODOS:   "  << startNode << "   " << endNode << "\n";
         std::vector<pairs> adj[getNodes()->getSize()];
         std::cout << "Pasa" << "\n";
         for(int i=0; i < getEdges()->getSize(); i++){

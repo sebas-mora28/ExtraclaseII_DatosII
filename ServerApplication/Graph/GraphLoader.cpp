@@ -52,9 +52,7 @@ private:
 
         }
         concanetateMessage();
-        graph->printEdges();
-        graph->initShortestPath(0,0);
-
+       // graph->printEdges();
 
 
     }
@@ -75,7 +73,7 @@ private:
             linePointer = strtok(NULL, ",");
             count++;
             if(count == MAX_NUMBER_OF_NODES_CONNECTED_IN_A_EDGE+1){
-                std::cout << index[0] << "    " << index[1] << "   " <<  index[2] << "\n";
+                //std::cout << index[0] << "    " << index[1] << "   " <<  index[2] << "\n";
                 graph->addEdge(index[0]-1, index[1]-1, index[2]);
             }
         }

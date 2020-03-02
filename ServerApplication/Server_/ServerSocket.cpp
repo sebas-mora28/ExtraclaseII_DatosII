@@ -79,22 +79,32 @@ public:
             }
             std::cout << std::string(buf, 0, bytesReceived) << "\n";
 
-
             if(bodyTxtSended){
                 sendMessage(clientSocket, const_cast<char *>(graphLoader->getBody().c_str()));
                 bodyTxtSended = false;
             }else{
-
-                send(clientSocket, buf, bytesReceived + 1, 0);
+                searchShortestPath(buf, graphLoader);
             }
-
-
-            sendMessage(clientSocket,"Se ha enviado");
-
         }
-
-
         close(clientSocket);
+    }
+
+
+
+
+    void searchShortestPath(char buf[128], GraphLoader* graphLoader){
+        int* indexNumber = (int*) malloc(sizeof(int) * 2);
+        char* piece = strtok(buf, ",");
+        int i = 0;
+        while(piece != NULL){
+            std::cout << piece << "\n";
+            indexNumber[i] = atoi(piece);
+            piece = strtok(NULL, ",");
+            i++;
+        }
+        std::cout << indexNumber[0] << "  : "  << indexNumber[1] << "\n";
+        graphLoader->getGraph()->shortestPath(indexNumber[0]-1, indexNumber[1]-1);
+
     }
 
 
