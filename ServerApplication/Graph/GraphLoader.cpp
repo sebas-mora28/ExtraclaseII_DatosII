@@ -6,23 +6,42 @@
 
 
 
+/**
+ * This class loads the graph from a txt file, creates the nodes and edges specifies in the txt file and  send it to the client server
+ */
 
 class GraphLoader{
 
 public:
+
+
+    /**
+     * Constructor
+     */
 
     GraphLoader(){
         this->graph = new Graph();
 
     }
 
+    /**
+     * Destructor
+     */
+
     void loadGraph(){
         loadGraphFromFile();
     }
 
+
+    /**
+     * Returns the body of the txt file
+     * @return
+     */
+
     std::string getBody(){
         return bodyTxt;
     }
+
 
     Graph* getGraph(){
         return this->graph;
@@ -35,6 +54,10 @@ private:
     const int MAX_NUMBER_OF_NODES_CONNECTED_IN_A_EDGE{2};
     std::string bodyTxt;
 
+
+    /**
+     * This method opens the txt file and parses it line by line to get the number of nodes and the edges
+     */
     void loadGraphFromFile(){
         char line[256];
         std::ifstream fin("/home/sebasmora/Desktop/test.txt");
@@ -56,6 +79,11 @@ private:
 
 
     }
+
+    /**
+     * This method receives the number of nodes and creates them
+     * @param linePointer
+     */
     void createGraphNodes(char* linePointer){
         int amount_of_nodes = atoi(linePointer);
         for(int index =0; index < amount_of_nodes; index++){
@@ -64,6 +92,11 @@ private:
         }
     }
 
+
+    /**
+     * This method receives the line with the information to create the edge
+     * @param linePointer
+     */
 
     void createGraphEdges(char* linePointer){
         int index[3];
@@ -83,6 +116,10 @@ private:
 
 
 
+
+    /**
+     * This method cocanetate the body of the txt to store it int a single variable
+     */
     void concanetateMessage(){
         std::ifstream archivo("/home/sebasmora/Desktop/test.txt");
         char linea[128];

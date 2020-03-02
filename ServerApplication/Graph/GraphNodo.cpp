@@ -1,4 +1,9 @@
 
+
+/**
+ * Graph Nodo implementation
+ * @tparam T
+ */
 template<class T>
 class GraphNodo{
 private:
@@ -10,11 +15,21 @@ private:
 
 public:
 
+    /**
+     * Constructor
+     * @param entity
+     */
     GraphNodo(T entity){
         this->inDegree = 0;
         this->outDegree = 0;
         this->entity = entity;
     }
+
+
+    /**
+     * Destructor
+     */
+    ~GraphNodo() = default;
 
     void setInDegree(int inDegree){
         this->inDegree = inDegree;

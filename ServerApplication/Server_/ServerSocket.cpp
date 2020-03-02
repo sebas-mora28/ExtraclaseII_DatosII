@@ -9,6 +9,10 @@
 #include "../Graph/GraphLoader.cpp"
 
 
+
+/**
+ * This class handles the server and the communication with the client
+ */
 class ServerSocket{
 
 private:
@@ -20,6 +24,11 @@ private:
 
 public:
 
+
+    /**
+     * This methods creates the server and set up the communication with the client.
+     * @param graphLoader
+     */
     void createSocket(GraphLoader* graphLoader) {
 
         int listening = socket(AF_INET, SOCK_STREAM, 0);
@@ -84,7 +93,6 @@ public:
             std::string messageReceive = std::string(buf, 0, bytesReceived);
 
             if(messageReceive.compare(COMMAND_LOAD_GRAPH) == 0){
-                std::cout << "ENTRA A CARGAR EL GRAFO " << "\n";
                 sendMessage(clientSocket, const_cast<char *>(graphLoader->getBody().c_str()));
                 bodyTxtSended = false;
             }else{
@@ -97,12 +105,17 @@ public:
 
 
 
+
+    /**
+     * This method receives the information of two nodes to search de shortest path
+     * @param buf
+     * @param graphLoader
+     */
     void searchShortestPath(char buf[128], GraphLoader* graphLoader){
         int* indexNumber = (int*) malloc(sizeof(int) * 2);
         char* piece = strtok(buf, ",");
         int i = 0;
         while(piece != NULL) {
-            std::cout << piece << "\n";
             indexNumber[i] = atoi(piece);
             piece = strtok(NULL, ",");
             i++;
@@ -113,18 +126,21 @@ public:
 
     }
 
+    /**
+     * This methods receive a new message and send it to the client
+     * @param clientSocket
+     * @param message
+     */
+
     void sendMessage(int clientSocket, char *message) {
         std::cout << "TAMANO DEL MENSAJE " << strlen(message) << "\n";
         std::cout << message << "\n";
-        if(strlen(message) > 1) {
+        if(strlen(message) > 10) {
             int sendMessage = send(clientSocket, message, strlen(message) - 2, 0);
         }else{
             int sendMessage = send(clientSocket, message, strlen(message), 0);
 
         }
     }
-
-
-
 
 };

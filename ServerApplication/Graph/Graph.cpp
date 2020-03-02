@@ -10,6 +10,10 @@
 
 typedef std::pair<int,int> pairs;
 
+/**
+ * This class contains the graph implementation
+ */
+
 class Graph{
 private:
     LinkedList<GraphNodo<int>*>* nodes;
@@ -27,10 +31,19 @@ private:
 
 
 public:
+
+    /**
+     * Constructor
+     */
     Graph(){
         this->nodes = new  LinkedList<GraphNodo<int>*>();
         this->edges = new LinkedList<GraphEdge<GraphNodo<int>*>*>();
     }
+
+
+    /**
+     * Destructor
+     */
 
     ~Graph() {
         delete nodes;
@@ -39,10 +52,23 @@ public:
 
 
 
+    /**
+     * Adds a new GraphNodo
+     * @param index
+     */
+
     void addNode(int index){
         getNodes()->addNodo(new GraphNodo<int>(index));
 
     }
+
+
+    /**
+     * Adds a new GraphEnde
+     * @param indexStartNode
+     * @param indexEndNode
+     * @param weight
+     */
 
     void addEdge(int indexStartNode, int indexEndNode, int weight){
         GraphNodo<int>* startNode = getNodes()->get(indexStartNode)->data;
@@ -57,6 +83,9 @@ public:
     }
 
 
+    /**
+     * Prints all the edges of the graph
+     */
     void printEdges(){
         for(int i=0; i<= getEdges()->getSize()-1; i++){
             std::cout << getEdges()->get(i)->data->getStartNode() << "   " <<  getEdges()->get(i)->data->getEndNode() << "\n";
@@ -65,17 +94,39 @@ public:
         }
     }
 
+
+    /**
+     * Print all the nodes of the graph
+     */
+
     void printNodes(){
         for(int i=0; i<= getNodes()->getSize()-1; i++){
             std::cout << getNodes()->get(i)->data->getEntity() << "\n";
         }
     }
 
+
+    /**
+     * This methods calls initShortestPath to start executing dijkstra algorithm
+     * @param startNode
+     * @param endNode
+     * @return the value of the shortest path
+     */
+
     int shortestPath(int startNode, int endNode){
         return initShortestPath(startNode, endNode);
     }
 
 private:
+
+
+    /**
+     * This methods implements and executes dijkstra algorithm
+     * @param adj
+     * @param source
+     * @param end
+     * @return
+     */
 
     int DijkstraAlgorithm(std::vector<pairs> adj[], int source, int end){
 
@@ -110,13 +161,18 @@ private:
 
 
 
+    /**
+     * This method creates the adjacency list and call DijkstraAlgorithm
+     * @param startNode
+     * @param endNode
+     * @return
+     */
     int initShortestPath(int startNode, int endNode){
         std::cout << "NODOS:   "  << startNode << "   " << endNode << "\n";
         std::vector<pairs> adj[getNodes()->getSize()];
         std::cout << "Pasa" << "\n";
         for(int i=0; i < getEdges()->getSize(); i++){
             auto* current  = edges->get(i)->data;
-            std::cout << current->getWeight() << "\n";
             addEdgeShortestPath(adj, current->getStartNode()->getEntity(), current->getEndNode()->getEntity(), current->getWeight());
         }
         return DijkstraAlgorithm(adj, startNode, endNode);
@@ -124,6 +180,14 @@ private:
     }
 
 
+
+    /**
+     * This method push a new pair into the adyacency list
+     * @param adj
+     * @param startNode
+     * @param endNode
+     * @param weight
+     */
     void addEdgeShortestPath(std::vector <pairs> adj[], int startNode, int endNode, int weight){
         adj[startNode].push_back(std::make_pair(endNode, weight));
     }

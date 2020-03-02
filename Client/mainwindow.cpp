@@ -59,6 +59,7 @@ void MainWindow::on_ShortestPath_clicked()
     QString start_node_selected = ui->StartNode_box->currentText();
     QString end_node_selected = ui->EndNode_box->currentText();
 
+
     QString shortest_path_value = client->sendMessage(start_node_selected.toStdString() + "," + end_node_selected.toStdString());
 
     ui->shortest_path_value->setText(shortest_path_value);

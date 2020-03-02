@@ -2,6 +2,11 @@
 
 
 template<class T>
+
+        /**
+         * Graph Edge implementation
+         * @tparam T
+         */
 class GraphEdge{
 
 private:
@@ -12,17 +17,30 @@ private:
 
 public:
 
+
+    /**
+     * Constructor
+     * @param startNode
+     * @param endNode
+     * @param weight
+     */
+
     GraphEdge(T startNode, T endNode, int weight){
         this->statNode = startNode;
         this->endNode = endNode;
         this->weigth = weight;
     }
 
+
+    /**
+     * Destructor
+     */
     ~GraphEdge()= default;
 
     T getStartNode(){
         return this->statNode;
     }
+
     void setStartNode(GraphNodo<T>* startNode){
         this->statNode = startNode;
     }
