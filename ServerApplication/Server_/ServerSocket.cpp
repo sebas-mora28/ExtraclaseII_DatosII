@@ -6,6 +6,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <string>
+#include "../Graph/GraphLoader.cpp"
 
 
 class ServerSocket{
@@ -17,7 +18,7 @@ private:
 
 public:
 
-    void createSocket(std::string bodyTxt) {
+    void createSocket(GraphLoader* graphLoader) {
 
         int listening = socket(AF_INET, SOCK_STREAM, 0);
         if (listening == -1) {
@@ -80,9 +81,10 @@ public:
 
 
             if(bodyTxtSended){
-                sendMessage(clientSocket, const_cast<char *>(bodyTxt.c_str()));
+                sendMessage(clientSocket, const_cast<char *>(graphLoader->getBody().c_str()));
                 bodyTxtSended = false;
             }else{
+
                 send(clientSocket, buf, bytesReceived + 1, 0);
             }
 
@@ -104,6 +106,8 @@ public:
             std::cout << "No se ha podido enviar el mensaje";
         }
     }
+
+
 
 
 };

@@ -24,6 +24,10 @@ public:
         return bodyTxt;
     }
 
+    Graph* getGraph(){
+        return this->graph;
+    }
+
 
 private:
     Graph* graph;
@@ -48,7 +52,8 @@ private:
 
         }
         concanetateMessage();
-        //graph->printEdges();
+        graph->printEdges();
+        graph->initShortestPath(0,0);
 
 
 
@@ -63,15 +68,15 @@ private:
 
 
     void createGraphEdges(char* linePointer){
-        int index[2];
+        int index[3];
         int count{0};
-        while(linePointer != NULL && count < MAX_NUMBER_OF_NODES_CONNECTED_IN_A_EDGE){
+        while(linePointer != NULL){
             index[count] = atoi(linePointer);
             linePointer = strtok(NULL, ",");
             count++;
-            if(count == MAX_NUMBER_OF_NODES_CONNECTED_IN_A_EDGE){
-                //std::cout << index[0] << "    " << index[1] << "\n";
-                graph->addEdge(index[0], index[1]);
+            if(count == MAX_NUMBER_OF_NODES_CONNECTED_IN_A_EDGE+1){
+                std::cout << index[0] << "    " << index[1] << "   " <<  index[2] << "\n";
+                graph->addEdge(index[0]-1, index[1]-1, index[2]);
             }
         }
 
