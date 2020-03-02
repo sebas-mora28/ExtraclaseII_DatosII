@@ -80,6 +80,9 @@ private:
 
     }
 
+
+
+
     void concanetateMessage(){
         std::ifstream archivo("/home/sebasmora/Desktop/test.txt");
         char linea[128];

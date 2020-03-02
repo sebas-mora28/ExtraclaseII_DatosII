@@ -27,7 +27,7 @@ public:
 
     }
 
-    std::string sendMessage(std::string message){
+    QString sendMessage(std::string message){
         int sendMessage = send(client, message.c_str(), message.size()+1, 0);
         if(sendMessage == -1){
             std::cout << "No se ha podido enviar el mensage";
@@ -39,7 +39,7 @@ public:
         memset(buf, 0, 128);
         int bytesReceived = recv(client, buf, 4096, 0);
         std::cout << "Server " << std::string(buf, bytesReceived) << "\n";
-        return  std::string(buf, bytesReceived);
+        return  QString::fromStdString(std::string(buf, bytesReceived));
 
 
 

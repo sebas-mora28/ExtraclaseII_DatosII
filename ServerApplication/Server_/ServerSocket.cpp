@@ -13,6 +13,7 @@ class ServerSocket{
 
 private:
     bool bodyTxtSended{true};
+    int clientSocket;
 
 
 
@@ -39,7 +40,7 @@ public:
         sockaddr_in client;
         socklen_t clientSize = sizeof(client);
 
-        int clientSocket = accept(listening, (sockaddr *) &client, &clientSize);
+        clientSocket = accept(listening, (sockaddr *) &client, &clientSize);
 
         char host[NI_MAXHOST];
         char service[NI_MAXSERV];
@@ -96,24 +97,26 @@ public:
         int* indexNumber = (int*) malloc(sizeof(int) * 2);
         char* piece = strtok(buf, ",");
         int i = 0;
-        while(piece != NULL){
+        while(piece != NULL) {
             std::cout << piece << "\n";
             indexNumber[i] = atoi(piece);
             piece = strtok(NULL, ",");
             i++;
         }
-        std::cout << indexNumber[0] << "  : "  << indexNumber[1] << "\n";
-        graphLoader->getGraph()->shortestPath(indexNumber[0]-1, indexNumber[1]-1);
+        int valueShortestPath  = graphLoader->getGraph()->shortestPath(indexNumber[0]-1, indexNumber[1]-1);
+        char* message = const_cast<char *>(std::to_string(valueShortestPath).c_str());
+        sendMessage(clientSocket, message);
 
     }
-
 
     void sendMessage(int clientSocket, char *message) {
         std::cout << "TAMANO DEL MENSAJE " << strlen(message) << "\n";
         std::cout << message << "\n";
-        int sendMessage = send(clientSocket, message, strlen(message)-2, 0);
-        if (sendMessage == -1) {
-            std::cout << "No se ha podido enviar el mensaje";
+        if(strlen(message) > 1) {
+            int sendMessage = send(clientSocket, message, strlen(message) - 2, 0);
+        }else{
+            int sendMessage = send(clientSocket, message, strlen(message), 0);
+
         }
     }
 

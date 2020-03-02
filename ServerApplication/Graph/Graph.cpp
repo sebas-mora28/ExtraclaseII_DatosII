@@ -71,13 +71,13 @@ public:
         }
     }
 
-    void shortestPath(int startNode, int endNode){
-        initShortestPath(startNode, endNode);
+    int shortestPath(int startNode, int endNode){
+        return initShortestPath(startNode, endNode);
     }
 
 private:
 
-    void DijkstraAlgorithm(std::vector<pairs> adj[], int source, int end){
+    int DijkstraAlgorithm(std::vector<pairs> adj[], int source, int end){
 
         std::priority_queue < pairs, std::vector<pairs>, std::greater<pairs> > pqueue;
 
@@ -103,16 +103,14 @@ private:
 
         }
 
-        for(int i=0; i < dist.size(); i++){
-            std::cout << i << "  " << dist[i] <<"\n";
-        }
+        return dist[end-1];
 
     }
 
 
 
 
-    void initShortestPath(int startNode, int endNode){
+    int initShortestPath(int startNode, int endNode){
         std::cout << "NODOS:   "  << startNode << "   " << endNode << "\n";
         std::vector<pairs> adj[getNodes()->getSize()];
         std::cout << "Pasa" << "\n";
@@ -121,7 +119,7 @@ private:
             std::cout << current->getWeight() << "\n";
             addEdgeShortestPath(adj, current->getStartNode()->getEntity(), current->getEndNode()->getEntity(), current->getWeight());
         }
-        DijkstraAlgorithm(adj, startNode, endNode);
+        return DijkstraAlgorithm(adj, startNode, endNode);
 
     }
 

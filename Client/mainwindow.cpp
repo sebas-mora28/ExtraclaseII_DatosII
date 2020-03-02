@@ -5,6 +5,7 @@
 
 Client* client = new Client();
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -19,10 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     client->createSocket();
 
 
-    std::string message = "hola mundo";
-    std::string me = client->sendMessage(message);
 
-    QString bodyTxt = QString::fromStdString(me);
+    QString bodyTxt =  client->sendMessage(std::string("loadGraph"));
     std::cout << bodyTxt.toStdString() << "\n";
 
     QStringList bodyTxtList = bodyTxt.split("|");
@@ -35,6 +34,14 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
+
+    QFont font;
+    font.setBold(true);
+    font.setPointSize(12);
+    ui->shortest_path_title->setFont(font);
+    ui->title->setFont(font);
+    ui->shortest_path_value->setFont(font);
+
     QStandardItemModel* model = new QStandardItemModel(this);
     ui->tableView->setModel(model);
     model->setColumnCount(3);
@@ -45,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->setColumnWidth(0, 160);
     ui->tableView->setColumnWidth(1, 160);
     ui->tableView->setColumnWidth(2, 143);
+
 
 
 
@@ -77,7 +85,10 @@ void MainWindow::on_ShortestPath_clicked()
     QString start_node_selected = ui->StartNode_box->currentText();
     QString end_node_selected = ui->EndNode_box->currentText();
 
-    client->sendMessage(start_node_selected.toStdString() + "," + end_node_selected.toStdString());
+    QString shortest_path_value = client->sendMessage(start_node_selected.toStdString() + "," + end_node_selected.toStdString());
+
+    ui->shortest_path_value->setText(shortest_path_value);
+
 
 
 }
