@@ -112,17 +112,16 @@ public:
      * @param graphLoader
      */
     void searchShortestPath(char buf[128], GraphLoader* graphLoader){
-        int* indexNumber = (int*) malloc(sizeof(int) * 2);
+        int indexNumber = 0; //INDEX BY DEFAULT
         char* piece = strtok(buf, ",");
         int i = 0;
         while(piece != NULL) {
-            indexNumber[i] = atoi(piece);
+            indexNumber  = atoi(piece);
             piece = strtok(NULL, ",");
             i++;
         }
-        int valueShortestPath  = graphLoader->getGraph()->shortestPath(indexNumber[0]-1, indexNumber[1]-1);
-        char* message = const_cast<char *>(std::to_string(valueShortestPath).c_str());
-        sendMessage(clientSocket, message);
+        std::string valuesShortestPath  = graphLoader->getGraph()->shortestPath(indexNumber-1);
+        sendMessage(clientSocket, const_cast<char *>(valuesShortestPath.c_str()));
 
     }
 
@@ -133,8 +132,7 @@ public:
      */
 
     void sendMessage(int clientSocket, char *message) {
-        std::cout << "TAMANO DEL MENSAJE " << strlen(message) << "\n";
-        std::cout << message << "\n";
+        std::cout << "TAMANO DEL MENSAJE " << strlen(message)  << "MENSAJE " << message << "\n";
         if(strlen(message) > 10) {
             int sendMessage = send(clientSocket, message, strlen(message) - 2, 0);
         }else{

@@ -67,7 +67,6 @@ private:
             char* linePointer = strtok(line, ",");
             if(counterLine == LINE_AMOUNT_OF_NODES){
                 createGraphNodes(linePointer);
-                //graph->printNodes();
                 counterLine++;
             }else{
                 createGraphEdges(linePointer);
@@ -75,7 +74,6 @@ private:
 
         }
         concanetateMessage();
-       // graph->printEdges();
 
 
     }
@@ -87,7 +85,6 @@ private:
     void createGraphNodes(char* linePointer){
         int amount_of_nodes = atoi(linePointer);
         for(int index =0; index < amount_of_nodes; index++){
-            //std::cout << "SE HA CREADO UN NODO" << "\n";
             graph->addNode(index);
         }
     }
