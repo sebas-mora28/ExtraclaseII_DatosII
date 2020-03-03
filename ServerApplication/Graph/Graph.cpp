@@ -11,7 +11,7 @@
 typedef std::pair<int,int> pairs;
 
 /**
- * This class contains the graph implementation
+ * @class This class contains the graph implementation
  */
 
 class Graph{
@@ -42,7 +42,7 @@ public:
 
 
     /**
-     * Destructor
+     * @brief Destructor
      */
 
     ~Graph() {
@@ -53,7 +53,7 @@ public:
 
 
     /**
-     * Adds a new GraphNodo
+     * @brief Adds a new GraphNodo
      * @param index
      */
 
@@ -64,7 +64,7 @@ public:
 
 
     /**
-     * Adds a new GraphEnde
+     * @brief Adds a new GraphEnde
      * @param indexStartNode
      * @param indexEndNode
      * @param weight
@@ -84,7 +84,7 @@ public:
 
 
     /**
-     * Prints all the edges of the graph
+     * @brief Prints all the edges of the graph
      */
     void printEdges(){
         for(int i=0; i<= getEdges()->getSize()-1; i++){
@@ -96,7 +96,7 @@ public:
 
 
     /**
-     * Print all the nodes of the graph
+     * @brief Print all the nodes of the graph
      */
 
     void printNodes(){
@@ -107,7 +107,7 @@ public:
 
 
     /**
-     * This methods calls initShortestPath to start executing dijkstra algorithm
+     * @brief This methods calls initShortestPath to start executing dijkstra algorithm
      * @param startNode
      * @param endNode
      * @return the value of the shortest path
@@ -121,7 +121,7 @@ private:
 
 
     /**
-     * This methods implements and executes dijkstra algorithm
+     * @brief This methods implements and executes dijkstra algorithm
      * @param adj
      * @param source
      * @param end
@@ -168,7 +168,7 @@ private:
 
 
     /**
-     * This method creates the adjacency list and call DijkstraAlgorithm
+     * @brief This method creates the adjacency list and call DijkstraAlgorithm
      * @param startNode
      * @param endNode
      * @return
@@ -186,7 +186,7 @@ private:
 
 
     /**
-     * This method push a new pair into the adyacency list
+     * @brief This method push a new pair into the adyacency list
      * @param adj
      * @param startNode
      * @param endNode

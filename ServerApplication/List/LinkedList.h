@@ -1,19 +1,11 @@
-/**
- * Technological Institute of Costa Ric
- * Computer Engineering
- * Algoritmos y Estructuras de Datos II
- * @author Sebastian Mora Godínez
- * Description: Linked List implementation, includes Nodo class and add, remove, get methods
- *
- */
 
 #ifndef SERVERAPPLICATION_LINKEDLIST_H
 #define SERVERAPPLICATION_LINKEDLIST_H
 #include <iostream>
 
-/*
- * Nodo class
- * Description: Nodo class implementation, holds the data and the pointer to the next nodo
+/**
+ * @class Nodo Linked List
+ * @brief Description: Nodo class implementation, holds the data and the pointer to the next nodo
  */
 template<class T>
 class Nodo{
@@ -31,16 +23,16 @@ public:
 
 
 
-/*
- * Linked List
- * Description: This class contains all the necessary methods for linked List's implementation
+/**
+ * @class Linked List implementation
+ * @briefDescription: This class contains all the necessary methods for linked List's implementation
  */
 template<class T>
 class LinkedList{
 public:
 
     /**
-     * Constructor, initialize  the head pointer and the size
+     * @brief Constructor, initialize  the head pointer and the size
      */
     LinkedList(){
         this->head = nullptr;
@@ -49,13 +41,13 @@ public:
 
 
     /**
-     * Destructor
+     *@brief Destructor
      */
     ~LinkedList() = default;
 
 
     /**
-     * Verify if the linked list is empty
+     * @brief Verify if the linked list is empty
      * @return true if it's empty, otherwise it's false
      */
 
@@ -65,7 +57,7 @@ public:
 
 
     /**
-     * Add a new nodo to the tail of the linked list
+     *@brief Add a new nodo to the tail of the linked list
      * @param data
      */
 
@@ -87,7 +79,7 @@ public:
     }
 
     /**
-     * Remove a nodo from a especific position
+     *@brief Remove a nodo from a especific position
      * @param index
      */
     void remove(int index){
@@ -121,7 +113,7 @@ public:
     }
 
     /**
-     * Returns the value of the size
+     * @brief Returns the value of the size
      * @return
      */
     int getSize(){
@@ -129,7 +121,7 @@ public:
     }
 
     /**
-     * Returns the nodo from the especified position
+     * @brief Returns the nodo from the especified position
      * @param index
      * @return nodo encoutered in the index position
      */
@@ -155,6 +147,10 @@ public:
         }
         return current;
     }
+
+    /**
+     * @brief Remove all the nodes of the linked list
+     */
 
     void removeAll(){
         head = nullptr;

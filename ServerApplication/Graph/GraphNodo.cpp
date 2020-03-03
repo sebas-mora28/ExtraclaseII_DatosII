@@ -1,7 +1,7 @@
 
 
 /**
- * Graph Nodo implementation
+ * @class Graph Nodo implementation
  * @tparam T
  */
 template<class T>
@@ -16,7 +16,7 @@ private:
 public:
 
     /**
-     * Constructor
+     * @brief Constructor
      * @param entity
      */
     GraphNodo(T entity){
@@ -27,7 +27,7 @@ public:
 
 
     /**
-     * Destructor
+     * @brief Destructor
      */
     ~GraphNodo() = default;
 

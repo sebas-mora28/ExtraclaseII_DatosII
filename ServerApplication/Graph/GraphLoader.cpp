@@ -7,7 +7,7 @@
 
 
 /**
- * This class loads the graph from a txt file, creates the nodes and edges specifies in the txt file and  send it to the client server
+ * @class This class loads the graph from a txt file, creates the nodes and edges specifies in the txt file and  send it to the client server
  */
 
 class GraphLoader{
@@ -16,7 +16,7 @@ public:
 
 
     /**
-     * Constructor
+     * @brief Constructor
      */
 
     GraphLoader(){
@@ -25,7 +25,7 @@ public:
     }
 
     /**
-     * Destructor
+     * @brief Destructor
      */
 
     void loadGraph(){
@@ -34,7 +34,7 @@ public:
 
 
     /**
-     * Returns the body of the txt file
+     * @brief Returns the body of the txt file
      * @return
      */
 
@@ -56,11 +56,11 @@ private:
 
 
     /**
-     * This method opens the txt file and parses it line by line to get the number of nodes and the edges
+     * @brief This method opens the txt file and parses it line by line to get the number of nodes and the edges
      */
     void loadGraphFromFile(){
         char line[256];
-        std::ifstream fin("/home/sebasmora/Desktop/test.txt");
+        std::ifstream fin("/home/sebasmora/Desktop/pruebas/ExtraclaseI_DatosII/ServerApplication/graph.txt");
         int counterLine(1);
         while(!fin.eof()){
             fin >> line;
@@ -79,7 +79,7 @@ private:
     }
 
     /**
-     * This method receives the number of nodes and creates them
+     * @brief This method receives the number of nodes and creates them
      * @param linePointer
      */
     void createGraphNodes(char* linePointer){
@@ -91,7 +91,7 @@ private:
 
 
     /**
-     * This method receives the line with the information to create the edge
+     * @brief This method receives the line with the information to create the edge
      * @param linePointer
      */
 
@@ -115,10 +115,10 @@ private:
 
 
     /**
-     * This method cocanetate the body of the txt to store it int a single variable
+     * @brief This method cocanetate the body of the txt to store it int a single variable
      */
     void concanetateMessage(){
-        std::ifstream archivo("/home/sebasmora/Desktop/test.txt");
+        std::ifstream archivo("/home/sebasmora/Desktop/pruebas/ExtraclaseI_DatosII/ServerApplication/graph.txt");
         char linea[128];
         while(!archivo.eof()){
             archivo.getline(linea, sizeof(linea));

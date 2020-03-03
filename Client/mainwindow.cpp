@@ -104,7 +104,7 @@ void MainWindow::on_ShortestPath_clicked()
     for(int row=0; row < shortest_path_list.length(); row++){
 
         if(shortest_path_list[row].compare(INF)==0){
-            modelShortestPath->setItem(row, 2, new QStandardItem("There is no path"));
+            modelShortestPath->setItem(row, 2, new QStandardItem("No path"));
 
         }else{
             modelShortestPath->setItem(row, 2, new QStandardItem(shortest_path_list[row]));

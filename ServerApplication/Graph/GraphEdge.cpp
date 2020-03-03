@@ -4,7 +4,7 @@
 template<class T>
 
         /**
-         * Graph Edge implementation
+         * @class Graph Edge implementation
          * @tparam T
          */
 class GraphEdge{
@@ -19,7 +19,7 @@ public:
 
 
     /**
-     * Constructor
+     * @brief Constructor
      * @param startNode
      * @param endNode
      * @param weight
@@ -33,7 +33,7 @@ public:
 
 
     /**
-     * Destructor
+     *@brief Destructor
      */
     ~GraphEdge()= default;
 

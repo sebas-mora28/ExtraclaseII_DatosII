@@ -11,7 +11,7 @@
 
 
 /**
- * This class handles the server and the communication with the client
+ * @class This class handles the server and the communication with the client
  */
 class ServerSocket{
 
@@ -26,7 +26,7 @@ public:
 
 
     /**
-     * This methods creates the server and set up the communication with the client.
+     * @brief This methods creates the server and set up the communication with the client.
      * @param graphLoader
      */
     void createSocket(GraphLoader* graphLoader) {
@@ -107,7 +107,7 @@ public:
 
 
     /**
-     * This method receives the information of two nodes to search de shortest path
+     * @brief This method receives the information of two nodes to search de shortest path
      * @param buf
      * @param graphLoader
      */
@@ -126,7 +126,7 @@ public:
     }
 
     /**
-     * This methods receive a new message and send it to the client
+     * @brief This methods receive a new message and send it to the client
      * @param clientSocket
      * @param message
      */
