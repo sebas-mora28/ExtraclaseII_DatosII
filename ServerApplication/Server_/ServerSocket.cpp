@@ -133,12 +133,11 @@ public:
 
     void sendMessage(int clientSocket, char *message) {
         std::cout << "TAMANO DEL MENSAJE " << strlen(message)  << "MENSAJE " << message << "\n";
-        if(strlen(message) > 10) {
-            int sendMessage = send(clientSocket, message, strlen(message) - 2, 0);
-        }else{
             int sendMessage = send(clientSocket, message, strlen(message), 0);
+            if(sendMessage == -1){
+                std::cout << "Ocurrió un problema" << "\n";
+            }
 
-        }
     }
 
 };

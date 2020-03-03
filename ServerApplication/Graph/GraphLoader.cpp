@@ -122,9 +122,12 @@ private:
         char linea[128];
         while(!archivo.eof()){
             archivo.getline(linea, sizeof(linea));
+            if(strcmp(linea, "") == 0){break;}
             bodyTxt += linea;
             bodyTxt += "|";
         }
+
+        std::cout << bodyTxt << "\n";
     }
 
 };

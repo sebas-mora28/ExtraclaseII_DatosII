@@ -90,8 +90,7 @@ void MainWindow::on_ShortestPath_clicked()
     QStringList shortest_path_list = shortest_path_values.split(",");
 
 
-
-    for(int row=0; row< shortest_path_list.length(); row++){
+    for(int row=0; row< shortest_path_list.length()-1; row++){
         modelShortestPath->setItem(row, 0, new QStandardItem(start_node_selected));
         modelShortestPath->setItem(row, 1, new QStandardItem(QString::number(row+1)));
 
@@ -130,7 +129,6 @@ void MainWindow::on_pushButton_clicked(){
     ui->amount_of_nodos->setText(bodyTxtList[0]);
     for(int i=1; i<= bodyTxtList[0].toInt(); i++){
         ui->StartNode_box->addItem(QString::number(i));
-
     }
 
     for(int row=1; row < bodyTxtList.length()-1; row++){
